@@ -4,7 +4,7 @@ import java.util.Random;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class SelectionSort {
+public class SortingAlogrithm {
 
     // Select Minimum and Swap
     public static void main(String[] args) {
