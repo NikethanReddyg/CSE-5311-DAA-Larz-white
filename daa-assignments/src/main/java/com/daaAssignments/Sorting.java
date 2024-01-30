@@ -1,31 +1,53 @@
+package com.daaAssignments;
+
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Random;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class SortingAlogrithm {
-
-    // Select Minimum and Swap
+public class Sorting {
     public static void main(String[] args) {
-        int n = 1000000; // Number of arrays
-        int[][] arr = new int[n][];
+        int n = 1000000;
         Random rand = new Random();
 
-        for (int i = 0; i < n; i++) {
-            arr[i] = new int[i + 1]; 
-            for (int j = 0; j < i + 1; j++) {
-                arr[i][j] = rand.nextInt(); 
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Sorting Performance Results");
+            Row row = sheet.createRow(0);
+            row.createCell(0).setCellValue("arraySize");
+            row.createCell(1).setCellValue("selectionSort");
+            row.createCell(2).setCellValue("insertionSort");
+            row.createCell(3).setCellValue("bubbleSort");
+
+            for (int i = 1; i <= n; i++) {
+
+                int size = i * 5;
+                
+                int[] arr = new int[size];
+                for (int j = 0; j < size; j++) {
+                    arr[j] = rand.nextInt();
+                }
+                long selectionSortTimeTaken = selectionSort(arr.clone());
+                long insertionSortTimeTaken = insertionSort(arr.clone());
+                long bubbleSortTimeTaken = bubbleSort(arr.clone());
+
+                row = sheet.createRow(i);
+                row.createCell(0).setCellValue(size);
+                row.createCell(1).setCellValue(selectionSortTimeTaken);
+                row.createCell(2).setCellValue(insertionSortTimeTaken);
+                row.createCell(3).setCellValue(bubbleSortTimeTaken);
+
+                System.out.println("Array Size: " + size + " | Progress: " +  (100-(double)(n-i)/n *100));
             }
-            callSortingAlgorithms(arr[i]);
+
+            try (FileOutputStream fileOut = new FileOutputStream("SortingPerformanceResults.xlsx")) {
+                workbook.write(fileOut);
+                System.out.println("Successully writen data to excel sheet");
+            }
+        } catch (Exception e) {
+            System.out.println("Error while performing the operation: " + e);
         }
     }
 
-    public static void callSortingAlgorithms(int[] arr) {
-        System.out.println("Array Size: "+ arr.length + "\tselectionSort: "+ selectionSort(arr.clone())+ "\t| insertionSort: "+ selectionSort(arr.clone())+ "\t| bubbleSort: "+ bubbleSort(arr.clone()));
-    }
-
-    
     public static long insertionSort(int[] arr) {
         long startTime = System.nanoTime();
         for (int i = 1; i < arr.length; i++) {
@@ -38,7 +60,7 @@ public class SortingAlogrithm {
             arr[j + 1] = key;
         }
         long endTime = System.nanoTime();
-        return endTime-startTime;
+        return endTime - startTime;
     }
 
     public static long selectionSort(int[] arr) {
@@ -57,7 +79,7 @@ public class SortingAlogrithm {
             }
         }
         long endTime = System.nanoTime();
-        return endTime-startTime;
+        return endTime - startTime;
     }
 
     public static long bubbleSort(int[] arr) {
@@ -74,7 +96,7 @@ public class SortingAlogrithm {
             }
         }
         long endTime = System.nanoTime();
-        return endTime-startTime;
+        return endTime - startTime;
     }
 
     public static void printArray(int[] arr) {
