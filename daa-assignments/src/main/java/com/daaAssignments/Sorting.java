@@ -7,7 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Sorting {
     public static void main(String[] args) {
-        int n = 1000000;
+        int n = 10000;
         Random rand = new Random();
 
         try (Workbook workbook = new XSSFWorkbook()) {
