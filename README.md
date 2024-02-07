@@ -23,3 +23,8 @@ Solutions:
 1. Source is in daa-assignments/src/main/java/com/daaAssignments/Sorting.java
 2. Correctness is in daa-assignments/Hands-On 2/Correctness Of Selection Sort.pdf
 3. Code: daa-assignments/Hands-On 2/Sorting Algorithm Analysis.ipynb Data: daa-assignments/Hands-On 2/SortingPerformanceResults.xlsx
+
+### Hands-On 3
+
+For Question 1-6 refer handson3/Runtime Complexity.ipynb
+For Merge Sort Code refer: handson3/src/main/java/com/handson3/MergeSort.java
