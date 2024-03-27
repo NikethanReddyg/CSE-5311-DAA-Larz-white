@@ -22,3 +22,32 @@ public class HashTableImplementation {
         hashTable.printHashTable();
     }
 }
+
+/* Output
+ * Hash Table Size: 5
+Index 0: 
+Index 1: (1, 90) 
+Index 2: (2, 70) 
+Index 3: (3, 40) 
+Index 4: (4, 90) 
+Index 5: (5, 30) 
+Index 6: 
+Index 7: 
+Index 8: 
+Index 9: 
+Value at Key 1 90
+Value at Key 2 70
+Value at Key 3 40
+Value at Key 4 90
+Hash Table Size after removal: 4
+Index 0: 
+Index 1: (1, 90) 
+Index 2: 
+Index 3: (3, 40) 
+Index 4: (4, 90) 
+Index 5: (5, 30) 
+Index 6: 
+Index 7: 
+Index 8: 
+Index 9: 
+ */
